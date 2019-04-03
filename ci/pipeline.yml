@@ -1,0 +1,28 @@
+resources:
+  - name: hello_hapi
+    type: git
+    source: &repo-source
+      uri: https://github.com/teamsampleproject/nodeJSPOC
+      branch: master
+  - name: dependency-cache
+    type: npm-cache
+    source:
+      <<: *repo-source
+      paths:
+        - package.json
+
+jobs:
+  - name: Install dependencies
+    plan:
+      - get: hello_hapi
+        trigger: true
+      - get: dependency-cache
+  - name: Run tests
+    plan:
+      - get: hello_hapi
+        trigger: true
+        passed: [Install dependencies]
+      - get: dependency-cache
+        passed: [Install dependencies]
+      - task: run the test suite
+        file: hello_hapi/ci/tasks/run_tests.yml
