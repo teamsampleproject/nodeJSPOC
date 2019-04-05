@@ -1,5 +1,5 @@
 # use the latest node LTS release
-FROM concourse/concourse-ci
+FROM 308017/sampleuiproject1
 
 RUN apt-get update && apt-get install curl wget bzr -y
 
