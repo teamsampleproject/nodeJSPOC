@@ -1,3 +1,7 @@
+resource_types:
+  - name: npm-cache
+    type: docker-image
+
 resources:
   - name: hello_hapi
     type: git
