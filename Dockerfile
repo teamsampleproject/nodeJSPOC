@@ -1,5 +1,7 @@
 # use the latest node LTS release
-FROM concourse/concourse-ci
+FROM node:8
+# Create app directory
+WORKDIR /usr/src/app
 
 # copy package.json and package-lock.json and install packages. we do this
 # separate from the application code to better use docker's caching
